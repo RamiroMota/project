@@ -1,0 +1,29 @@
+#ServerSignature Off
+ 
+#AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/x-javascript
+
+Options +FollowSymLinks -MultiViews
+
+# Activar RewriteEngine
+RewriteEngine on
+RewriteBase /project/
+#RewriteCond %{HTTP_HOST} !^$
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteCond %{HTTPS}s ^on(s)|
+#RewriteRule ^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+
+RewriteRule ^([a-zA-Z0-9-]*)/pdf/(\w+)/?$ index.php?do=$1&act=pdf&id=$2
+RewriteRule ^([a-zA-Z0-9-]*)/archivos/(\w+)/?$ index.php?do=$1&act=archivos&id=$2
+RewriteRule ^([a-zA-Z0-9-]*)/categoria/(\w+)/?$ index.php?do=$1&act=categoria&id=$2
+RewriteRule ^([a-zA-Z0-9-]*)/fotos/(\w+)/?$ index.php?do=$1&act=fotos&id=$2
+RewriteRule ^([a-zA-Z0-9-]*)/nuevo/?$ index.php?do=$1&act=nuevo
+RewriteRule ^([a-zA-Z0-9-]*)/editar/(\w+)/?$ index.php?do=$1&act=editar&id=$2
+RewriteRule ^([a-zA-Z0-9-]*)/([a-zA-Z0-9-]*)/(\w+)/(.*)?$ index.php?do=$1&act=$2&id=$3 [QSA]
+RewriteRule ^([a-zA-Z0-9-]*)/([a-zA-Z0-9-]*)/(\w+)/?$ index.php?do=$1&act=$2&id=$3
+RewriteRule ^([a-zA-Z0-9-]*)/eliminar/(\w+)/?$ index.php?do=$1&act=eliminar&id=$2
+RewriteRule ^([a-zA-Z0-9-]*)/?$ index.php?do=$1
+
+
+
+ErrorDocument 404 http://localhost/project/404/
